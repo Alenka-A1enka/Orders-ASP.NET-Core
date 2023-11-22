@@ -1,0 +1,34 @@
+﻿body {
+    display: grid;
+    /*grid-template-columns: 1fr 1fr;*/
+}
+
+label {
+    margin-bottom: 15px;
+}
+
+.order__add {
+    margin-top: 50px;
+    margin-left: 85px;
+}
+
+.order__filter {
+    width: 350px;
+    margin-top: 50px;
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    padding: 30px 30px 30px 30px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.filter__button {
+    margin-top: 20px;
+}
+
+.orders__table {
+    margin-top: 30px;
+    float: right;
+    min-width: 800px;
+}

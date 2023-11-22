@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+
+    <link rel="stylesheet" href="~/css/IndexStyle.css" asp-append-version="true" />
+</head>
+<div class="text-left">
+    <h2 class="text-center">Главная страница</h2>
+    <div class="orders">
+        <div class="orders__table">
+            <div class="text-center" style="margin-bottom: 50px">
+                <h3>Заказы</h3>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Номер заказа</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Поставщик</th>
+                        <th scope="col">Название элемента</th>
+                        <th scope="col">Количество</th>
+                        <th scope="col">Ед. измерения</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var order in ViewBag.Orders)
+                    {
+                        <tr>
+                            <th>@i</th>
+                            <td>@order.OrderNumber</td>
+                            <td>@order.OrderCreateDate</td>
+                            <td>@order.ProviderName</td>
+                            <td>@order.OrderItemName</td>
+                            <td>@order.OrderItemQuantity</td>
+                            <td>@order.OrderItemUnit</td>
+                        </tr>
+                        {
+                            i++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="order__add">
+            <button type="button" class="btn btn-secondary btn-lg">Добавить заказ</button>
+        </div>
+        <div class="order__filter">
+            <div class="filters">
+                <div class="form-group">
+                    <label for="StartDate">Выберите временной промежуток: </label>
+                    <input class="form-control" data-val="true" data-val-required="Date is required"
+                           id="StartDate" name="StartDate" type="date" value=@DateTime.Now />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" data-val="true" data-val-required="Date is required"
+                           id="EndDate" name="EndDate" type="date" value=@DateTime.Now />
+                </div>
+                <div class="form-group">
+                    <label for="orderNumbers">Номера заказов: </label>
+                    <select multiple class="form-control" id="orderNumbers">
+                        @foreach(var order in ViewBag.Orders)
+                        {
+                            <option>@order.OrderNumber</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="providerIds">Выберите поставщиков: </label>
+                    <select multiple class="form-control" id="providerIds">
+                        @foreach (var name in ViewBag.ProviderNames)
+                        {
+                            <option>@name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="orderItemNames">Выберите товары: </label>
+                    <select multiple class="form-control" id="orderItemNames">
+                        @foreach (var name in ViewBag.OrderItemNames)
+                        {
+                            <option>@name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="units">Единицы измерения товара: </label>
+                    <select multiple class="form-control" id="units">
+                        @foreach (var unit in ViewBag.OrderItemUnits)
+                        {
+                            <option>@unit</option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+            <div class="filter__button">
+                <button type="button" class="btn btn-secondary">Применить фильтры</button>
+            </div>
+        </div>
+    </div>
+</div>
